@@ -5,7 +5,7 @@ import requests
 
 class ApiHelper:
     def __init__(self):
-        self._base_url = 'https://localhost:7295/api/'
+        self._base_url = 'http://localhost:5217/api/'
 
     def save_many_lands(self, lands: list):
         url = urljoin(self._base_url, 'Land/SaveLands')

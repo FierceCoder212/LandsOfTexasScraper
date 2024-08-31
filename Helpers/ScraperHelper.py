@@ -20,9 +20,9 @@ class ScraperHelper:
 
     def start_scraper(self):
         pages = self._get_pages()
-        for page_index, page in enumerate(pages[:1]):
-            print(f'On page {page_index + 1} of {len(pages)}')
-            self._driver_helper.get(page, random_sleep=True)
+        for page_index, page in enumerate(pages):
+            print(f'On page {page_index + 1} of {len(pages) + 1}')
+            self._driver_helper.get(page, random_sleep=False)
             listings = self._scrape_listings()
             print(f'Saving {len(listings)} lands...')
             self._api_helper.save_many_lands(listings)
@@ -47,8 +47,8 @@ class ScraperHelper:
         listings = self._get_listings()
         listing_models = []
         for listing_index, listing in enumerate(listings):
-            print(f'On listing {listing_index + 1} of {len(listings)}')
-            self._driver_helper.get(listing, random_sleep=True)
+            print(f'On listing {listing_index + 1} of {len(listings) + 1}')
+            self._driver_helper.get(listing, random_sleep=False)
             listing_model = self._scrape_listing(listing)
             listing_models.append(listing_model.model_dump())
         return listing_models
