@@ -19,7 +19,7 @@ class ScraperHelper:
         self._api_helper = ApiHelper()
 
     def start_scraper(self):
-        pages = self._get_pages()
+        pages = self._get_pages()[-1:]
         for page_index, page in enumerate(pages):
             print(f'On page {page_index + 1} of {len(pages) + 1}')
             self._driver_helper.get(page, random_sleep=False)
@@ -35,7 +35,7 @@ class ScraperHelper:
         time.sleep(5)
         soup = self._bs4_helper.get_soup()
         total_pages = int(soup.select_one('div._95b7d span.cc74c:last-child').text)
-        all_pages = [f'{self._base_url}page-{i}' for i in range(1, total_pages)]
+        all_pages = [f'{self._base_url}page-{i}' for i in range(1, total_pages + 1)]
         return all_pages
 
     def _get_listings(self) -> list[str]:
