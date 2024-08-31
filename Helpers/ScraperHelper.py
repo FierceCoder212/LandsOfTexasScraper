@@ -19,7 +19,7 @@ class ScraperHelper:
         self._api_helper = ApiHelper()
 
     def start_scraper(self):
-        pages = self._get_pages()[-1:]
+        pages = self._get_pages()
         for page_index, page in enumerate(pages):
             print(f'On page {page_index + 1} of {len(pages) + 1}')
             self._driver_helper.get(page, random_sleep=False)
