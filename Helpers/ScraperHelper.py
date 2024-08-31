@@ -137,6 +137,6 @@ class ScraperHelper:
             property_info = property_info_container.get_text(' ', strip=True)
             if price_match := re.search(r'\$([\d,]+)', property_info):
                 price = float(price_match.group(1).replace(',', ''))
-            if acres_match := re.search(r'(\d[\d,]*)\s+Acres', property_info):
+            if acres_match := re.search(r'(\d[\d,]*(?:\.\d+)?)\s+Acres', property_info):
                 acres = float(acres_match.group(1).replace(',', ''))
         return price, acres
